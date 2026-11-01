@@ -4,7 +4,6 @@ import { ArrowUpRight } from '@phosphor-icons/react'
 import { homeHero } from '@/content/home'
 import { site } from '@/content/site'
 import { useScrollScene } from '@/hooks/use-scroll-scene'
-import { scrollToSection } from '@/lib/motion/smooth-scroll'
 import { heroScene } from './hero-scene'
 import './hero.css'
 
@@ -34,16 +33,9 @@ export function HeroSection() {
         <div className="hero__foot">
           <p className="hero__sub">{homeHero.subhead}</p>
 
-          {/* Glides Home to the Contact section (a same-path link, so Lenis keeps its glide). */}
           <Link
             to={homeHero.cta.to}
             className="hero__cta btn-line"
-            onClick={(event) => {
-              // A new-tab click (Ctrl / Cmd / middle) keeps the link's own behaviour.
-              if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey) return
-              event.preventDefault()
-              scrollToSection('contact')
-            }}
           >
             {homeHero.cta.label}
             <ArrowUpRight size={16} weight="bold" aria-hidden />

@@ -3,6 +3,11 @@ import { createBrowserRouter, Navigate, type RouteObject } from 'react-router'
 import { ContactPage } from '@/features/contact/ContactPage'
 import { HomePage } from '@/features/home/HomePage'
 import { LegalPage } from '@/features/legal/LegalPage'
+import { ProjectsPage } from '@/features/pages/ProjectsPage'
+import { ServicesPage } from '@/features/pages/ServicesPage'
+import { AboutPage } from '@/features/pages/AboutPage'
+import { ResumePage } from '@/features/pages/ResumePage'
+import { ShowcasePage } from '@/features/pages/PortfolioShowcasePage'
 import { AppShell } from './AppShell'
 import { RouteStage } from './RouteStage'
 import { notFoundTitle, pages, type PageRoute } from './routes'
@@ -11,12 +16,17 @@ import { notFoundTitle, pages, type PageRoute } from './routes'
 const PAGE_COMPONENTS: Partial<Record<string, ComponentType<{ page: PageRoute }>>> = {
   home: HomePage,
   contact: ContactPage,
+  work: ProjectsPage,
+  services: ServicesPage,
+  about: AboutPage,
+  resume: ResumePage,
+  showcase: ShowcasePage,
   privacy: LegalPage,
   terms: LegalPage,
 }
 
 function elementFor(page: PageRoute) {
-  // A page that only lives as a Home section (Work, Services, About) sends its own URL there.
+  // Draft routes retain their in-Home section destination until the page is built.
   if (page.draft && page.section) return <Navigate to={`/#${page.section}`} replace />
   const Page = PAGE_COMPONENTS[page.id] ?? RouteStage
   return <Page page={page} />

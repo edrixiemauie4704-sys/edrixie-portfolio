@@ -1,0 +1,167 @@
+.ho {
+  --gutter: clamp(16px, 3.5vw, 56px);
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(56px, 8vh, 96px) var(--gutter);
+}
+.ho__head {
+  max-width: 760px;
+  margin-bottom: clamp(24px, 4vw, 42px);
+}
+.ho__head .wk-eyebrow { margin-bottom: 14px; }
+.ho__head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.5vw, 4.4rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+.ho__head h2 i,
+.ho__strengths h3 i {
+  color: var(--accent-deep);
+  font-weight: 400;
+}
+.ho__head > p:last-child {
+  max-width: 52ch;
+  margin: 16px 0 0;
+  color: var(--ink-2);
+  font-size: 16px;
+}
+.ho__destinations {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.ho__destination {
+  position: relative;
+  display: grid;
+  align-content: start;
+  min-height: 156px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  transition: border-color 180ms ease, transform 220ms var(--ease-spring), background-color 180ms ease;
+}
+.ho__destination:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+  background: var(--surface-2);
+}
+.ho__destination-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--accent-deep);
+}
+.ho__destination-top small {
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+}
+.ho__destination-name {
+  margin-top: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -.025em;
+}
+.ho__destination-detail {
+  max-width: 30ch;
+  margin-top: 3px;
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.4;
+}
+.ho__destination-arrow {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  color: var(--ink-3);
+  transition: transform 180ms ease;
+}
+.ho__destination:hover .ho__destination-arrow { transform: translate(2px, -2px); }
+.ho__details {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 5vw, 64px);
+  margin-top: clamp(26px, 4vw, 44px);
+  padding: clamp(22px, 3vw, 36px);
+  border-radius: var(--radius-xl);
+  background: var(--surface-3);
+}
+.ho__details .pg-mono { margin: 0; }
+.ho__strengths h3,
+.ho__tools h3 {
+  margin: 12px 0 0;
+  font-size: clamp(19px, 2.2vw, 25px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+}
+.ho__strengths ul {
+  display: grid;
+  gap: 9px;
+  margin: 16px 0 0;
+  padding-left: 18px;
+  color: var(--ink-2);
+  font-size: 14px;
+}
+.ho__clock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 20px 0 0;
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.ho__clock time { margin-left: auto; color: var(--ink); font-size: 12px; font-weight: 600; letter-spacing: 0; }
+.ho__clock-dot { width: 7px; height: 7px; border-radius: 50%; background: #5b8062; box-shadow: 0 0 0 4px color-mix(in srgb, #5b8062 15%, transparent); }
+.ho__tools ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.ho__tools li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 5px 10px 5px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 12px;
+  line-height: 1;
+}
+.ho__tools li img { flex: none; width: 20px; height: 20px; object-fit: contain; }
+.ho__tools-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+@media (max-width: 760px) {
+  .ho__destinations { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ho__details { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 420px) {
+  .ho__destination { min-height: 142px; padding: 15px; }
+  .ho__destination-name { font-size: 18px; }
+  .ho__destination-detail { font-size: 12px; }
+  .ho__clock { flex-wrap: wrap; }
+  .ho__clock time { margin-left: 16px; }
+}

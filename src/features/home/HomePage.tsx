@@ -4,6 +4,8 @@ import type { PageRoute } from '@/app/routes'
 import { findChapter } from '@/content/home'
 import { useHashLanding } from '@/hooks/use-hash-landing'
 import { WorkSheet } from './work/WorkSheet'
+import { HomeOverviewSection } from './HomeOverviewSection'
+import { WorkSection } from './work/WorkSection'
 import { homeSectionList } from './sections'
 
 /**
@@ -20,9 +22,9 @@ export function HomePage({ page }: { page: PageRoute }) {
   return (
     <>
       {chapter ? null : <PageMeta page={page} />}
-      {homeSectionList.map(({ id, Component }) => (
-        <Component key={id} />
-      ))}
+      {homeSectionList.map(({ id, Component }) => <Component key={id} />)}
+      <HomeOverviewSection />
+      <WorkSection preview />
       <WorkSheet chapter={chapter} />
     </>
   )

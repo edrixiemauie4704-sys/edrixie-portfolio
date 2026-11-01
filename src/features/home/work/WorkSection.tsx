@@ -16,18 +16,20 @@ const selectedChapters = [...workChapters].sort((a, b) => DISPLAY_ORDER.indexOf(
  * chapters largest (grid areas in work.css, keyed by chapter id); the tile is "A Clean frame". Nothing
  * holds: tiles rise in as they scroll into view. Every tile is a real link to /work/<chapter>, which opens that chapter's sheet over Home.
  */
-export function WorkSection() {
+export function WorkSection({ standalone = false, preview = false }: { standalone?: boolean; preview?: boolean }) {
+  const Title = standalone ? 'h1' : 'h2'
+  const visibleChapters = preview ? selectedChapters.slice(0, 3) : selectedChapters
   return (
-    <section id="work" className="wk wb" aria-labelledby="work-title">
+    <section id="work" className={`wk wb${standalone ? ' wb--page' : ''}${preview ? ' wb--preview' : ''}`} aria-labelledby="work-title">
       <header className="wb__head">
         <div className="wb__head-label">
           <p className="wk-eyebrow">{workSection.eyebrow}</p>
           <span>PORTFOLIO INDEX <i>·</i> 01—{String(workChapters.length).padStart(2, '0')}</span>
         </div>
         <div className="wb__head-main">
-          <h2 id="work-title" className="wk-title">
+          <Title id="work-title" className="wk-title">
             <span className="wk-title__thin">{workSection.titleThin}</span> <span className="wk-title__bold">{workSection.titleBold}</span>
-          </h2>
+          </Title>
           <div className="wb__head-side">
             <p>Stories, brand worlds, and digital experiences—gathered into one place.</p>
             <span className="wb__swipe-hint" aria-hidden="true">
@@ -43,7 +45,7 @@ export function WorkSection() {
         </div>
       </header>
       <ul id="work-collections" className="wb__grid">
-        {selectedChapters.map((chapter, index) => {
+        {visibleChapters.map((chapter, index) => {
           const pic = chapterPicture(chapter)
           return (
             <li key={chapter.id} className="wb__cell" data-area={chapter.id}>
@@ -90,6 +92,7 @@ export function WorkSection() {
           )
         })}
       </ul>
+      {preview ? <Link className="wb__all-projects" to="/work">Explore all projects <ArrowUpRight size={16} weight="bold" aria-hidden /></Link> : null}
     </section>
   )
 }

@@ -41,16 +41,17 @@ function Credential({ c }: { c: AboutCredential }) {
  * tools as raised paper keys and the credentials sit below the floor. The picture rises onto the
  * floor as it scrolls in (CSS scroll-driven, compositor only; still under reduced motion).
  */
-export function AboutSection() {
+export function AboutSection({ standalone = false }: { standalone?: boolean }) {
   const s = aboutSection
+  const Title = standalone ? 'h1' : 'h2'
   return (
     <section id="about" className="ab" aria-labelledby="ab-title">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: personLd }} />
       <header>
         <p className="wk-eyebrow">{s.eyebrow}</p>
-        <h2 id="ab-title" className="ab__title">
+        <Title id="ab-title" className="ab__title">
           {s.titleThin} <span>{s.titleBold}</span>
-        </h2>
+        </Title>
         <p className="ab__lede">{s.lede}</p>
       </header>
 

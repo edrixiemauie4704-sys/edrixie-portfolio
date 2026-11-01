@@ -23,12 +23,12 @@ export const site = {
   email: 'edrixiemauie4704@gmail.com',
   emailSubject: 'Project inquiry',
   replyPromise: 'Reply within one business day.',
-  location: '',
+  location: 'Philippines',
   /** Two-letter country code (ISO 3166) for the Person JSON-LD address. */
-  countryCode: '',
+  countryCode: 'PH',
   /** Your clock, shown live at the top of the sidebar. Any IANA zone, e.g. 'America/New_York'. */
-  timeZone: 'UTC',
-  timePlace: '',
+  timeZone: 'Asia/Manila',
+  timePlace: 'Philippines · UTC+8',
   avatar: { src: '/images/profile/edrixie-cutout.png', alt: 'Edrixie', width: 1100, height: 1430 },
   /** The sidebar picture (112px, 44px on the rail). */
   avatarSmall: '/images/profile/edrixie-cutout.png',

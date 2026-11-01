@@ -14,7 +14,8 @@ const toolLabels: Record<string, string> = {
 }
 
 /** A clean service grid keeps each offer and its supporting apps easy to scan. */
-export function ServicesSection() {
+export function ServicesSection({ standalone = false }: { standalone?: boolean }) {
+  const Title = standalone ? 'h1' : 'h2'
   return (
     <section id="services" className="sv" aria-labelledby="services-title">
       <header className="sv__head">
@@ -23,9 +24,9 @@ export function ServicesSection() {
             {servicesSection.eyebrow}
             <span className="sv__rule" aria-hidden />
           </p>
-          <h2 id="services-title" className="sv__title">
+          <Title id="services-title" className="sv__title">
             <span>{servicesSection.titleThin}</span> <b>{servicesSection.titleBold}</b>
-          </h2>
+          </Title>
         </div>
         <p className="sv__lede">{servicesPage.lede}</p>
       </header>

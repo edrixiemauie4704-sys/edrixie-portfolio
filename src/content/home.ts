@@ -12,7 +12,7 @@ export const homeHero = {
   headlineThin: 'Content that',
   headlineBold: 'connects.',
   subhead: 'I turn research into clear writing, thoughtful design, and SEO-friendly websites that help brands reach the right people.',
-  cta: { label: 'Let’s work together', to: '/#contact' },
+  cta: { label: 'Let’s work together', to: '/contact' },
   focus: ['SEO content writing', 'Digital content support', 'Website design'],
 }
 
