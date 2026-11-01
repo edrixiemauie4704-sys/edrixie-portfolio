@@ -845,6 +845,11 @@ a:hover .sh__name svg {
   color: var(--ink);
   box-shadow: var(--shadow-float);
 }
+/* Author `display: grid` overrides the browser's default hidden style for a closed dialog.
+   Keep the nested preview completely out of layout until a work card opens it. */
+.sh__preview:not([open]) {
+  display: none;
+}
 .sh__preview::backdrop {
   background: rgb(26 29 21 / .72);
 }
