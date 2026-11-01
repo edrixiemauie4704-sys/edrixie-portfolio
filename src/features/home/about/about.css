@@ -189,6 +189,120 @@
   gap: 20px 44px;
   margin-top: 24px;
 }
+.ab__cv {
+  margin-top: clamp(44px, 7vw, 84px);
+  padding-top: clamp(28px, 4vw, 48px);
+  border-top: 1px solid var(--line-strong);
+}
+.ab__cv-heading { max-width: 760px; }
+.ab__cv-heading .pg-mono { margin: 0 0 12px; }
+.ab__cv-heading h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.2cqi, 48px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -.04em;
+}
+.ab__cv-heading h2 i { color: var(--accent-deep); font-weight: 400; }
+.ab__cv-heading > p:last-child {
+  margin: 14px 0 0;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.ab__cv-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  margin-top: 22px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 12px;
+}
+.ab__cv-contact strong { color: var(--ink); font-size: 13px; }
+.ab__cv-contact a { color: inherit; text-underline-offset: 3px; }
+.ab__cv-contact a:hover { color: var(--ink); }
+.ab__cv-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(250px, .75fr);
+  align-items: start;
+  gap: clamp(28px, 5vw, 64px);
+  margin-top: 30px;
+}
+.ab__cv-grid h3 {
+  margin: 0 0 12px;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.ab__cv-entry,
+.ab__cv-education {
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  break-inside: avoid;
+}
+.ab__cv-entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+}
+.ab__cv-entry h4,
+.ab__cv-education h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+.ab__cv-entry-head p,
+.ab__cv-education p {
+  margin: 4px 0 0;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.ab__cv-entry time,
+.ab__cv-education time {
+  flex: none;
+  color: var(--accent-deep);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .04em;
+}
+.ab__cv-entry ul,
+.ab__cv-education ul {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.ab__cv-aside { display: grid; gap: 28px; }
+.ab__cv-education h4 { margin-top: 7px; }
+.ab__cv-education ul { gap: 3px; margin-top: 8px; }
+.ab__cv-skills {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ab__cv-skills li {
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.45;
+}
 .ab__cred {
   display: flex;
   align-items: center;
@@ -279,6 +393,9 @@ a.ab__cred:focus-visible,
 @media (max-width: 700px) {
   .ab__resume { align-items: flex-start; flex-direction: column; }
   .ab__resume-actions { justify-content: flex-start; }
+  .ab__cv-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .ab__cv-entry-head { flex-direction: column; gap: 6px; }
+  .ab__cv-contact { align-items: flex-start; flex-direction: column; gap: 8px; }
 }
 
 @media print {
@@ -288,8 +405,9 @@ a.ab__cred:focus-visible,
   .app-main { padding: 0 !important; }
   .app-main__inner { transform: none !important; }
   .ab { max-width: none; margin: 0; padding: 0; color: #171717; }
-  .ab h1, .ab h3, .ab__resume-intro > strong, .ab__resume-intro > span, .ab__lede, .ab__lead-quiet, .ab__cap-title, .ab__note, .ab__cred-copy > b, .ab__cred-copy > small { color: #171717 !important; }
+  .ab h1, .ab h2, .ab h3, .ab h4, .ab__resume-intro > strong, .ab__resume-intro > span, .ab__lede, .ab__lead-quiet, .ab__cap-title, .ab__note, .ab__cred-copy > b, .ab__cred-copy > small, .ab__cv-contact, .ab__cv-contact strong, .ab__cv-contact a, .ab__cv-heading > p:last-child, .ab__cv-entry-head p, .ab__cv-education p, .ab__cv-entry ul, .ab__cv-education ul, .ab__cv-skills li { color: #171717 !important; }
   .ab__resume { background: #fff; border-color: #aaa; }
+  .ab__cv, .ab__cv-contact, .ab__cv-entry, .ab__cv-education, .ab__cv-skills li { border-color: #aaa !important; }
   .ab__pic { opacity: 1 !important; animation: none !important; }
 }
 

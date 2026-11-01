@@ -98,7 +98,7 @@ export const pages: PageRoute[] = [
     path: '/about',
     label: 'About',
     title: `About & Resume | ${SUFFIX}`,
-    description: 'Learn about Edrixie’s approach, strengths, and content work since 2022, then open or print her resume profile.',
+    description: 'Read Edrixie’s full resume, including content writing experience, teaching practice, education, honors, and skills.',
     icon: User,
     group: 'menu',
   },

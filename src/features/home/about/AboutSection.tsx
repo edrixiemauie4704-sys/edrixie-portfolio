@@ -1,5 +1,6 @@
 import { ArrowUpRight, MapPin, Printer } from '@phosphor-icons/react'
 import { aboutSection, capabilities, credentials, type AboutCredential } from '@/content/about'
+import { resumeEducation, resumeExperience, resumeProfile, resumeSkills } from '@/content/resume'
 import { externalLinks, site, socials } from '@/content/site'
 import { personJsonLd } from '@/lib/seo'
 import './about.css'
@@ -59,7 +60,8 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
         <section className="ab__resume" aria-label="Resume summary">
           <div className="ab__resume-intro">
             <p className="pg-mono">Resume at a glance</p>
-            <strong>Writing and content work since 2022</strong>
+            <strong>{resumeProfile.name}</strong>
+            <span>{site.role} · Writing and content work since 2022</span>
             <span>{site.timePlace}</span>
           </div>
           <div className="ab__resume-actions">
@@ -116,6 +118,58 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
           <Credential key={c.id} c={c} />
         ))}
       </div>
+
+      {standalone ? (
+        <section className="ab__cv" aria-labelledby="ab-cv-title">
+          <div className="ab__cv-heading">
+            <p className="pg-mono">Resume · Full profile</p>
+            <h2 id="ab-cv-title">Experience, education <i>&amp;</i> skills</h2>
+            <p>{resumeProfile.summary}</p>
+          </div>
+
+          <div className="ab__cv-contact" aria-label="Resume contact details">
+            <strong>{resumeProfile.name}</strong>
+            <a href={`tel:${resumeProfile.phone.replaceAll(' ', '')}`}>{resumeProfile.phone}</a>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+            <span>{resumeProfile.location}</span>
+            <a href={socials.find((social) => social.label === 'LinkedIn')?.href} target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href={externalLinks.resource} target="_blank" rel="noreferrer">Previous portfolio</a>
+          </div>
+
+          <div className="ab__cv-grid">
+            <section className="ab__cv-experience" aria-labelledby="ab-cv-experience">
+              <h3 id="ab-cv-experience">Work experience</h3>
+              {resumeExperience.map((job) => (
+                <article className="ab__cv-entry" key={`${job.organization}-${job.role}`}>
+                  <div className="ab__cv-entry-head">
+                    <div><h4>{job.role}</h4><p>{job.organization}</p></div>
+                    <time>{job.dates}</time>
+                  </div>
+                  <ul>{job.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>
+                </article>
+              ))}
+            </section>
+
+            <aside className="ab__cv-aside">
+              <section aria-labelledby="ab-cv-education">
+                <h3 id="ab-cv-education">Education</h3>
+                {resumeEducation.map((record) => (
+                  <article className="ab__cv-education" key={record.program}>
+                    <time>{record.dates}</time>
+                    <h4>{record.program}</h4>
+                    <p>{record.school}</p>
+                    <ul>{record.honors.map((honor) => <li key={honor}>{honor}</li>)}</ul>
+                  </article>
+                ))}
+              </section>
+              <section aria-labelledby="ab-cv-skills">
+                <h3 id="ab-cv-skills">Skills</h3>
+                <ul className="ab__cv-skills">{resumeSkills.map((skill) => <li key={skill}>{skill}</li>)}</ul>
+              </section>
+            </aside>
+          </div>
+        </section>
+      ) : null}
     </section>
   )
 }
