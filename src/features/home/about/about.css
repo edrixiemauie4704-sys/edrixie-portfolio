@@ -245,7 +245,7 @@ a.ab__cred:focus-visible,
   }
   .ab__pic {
     width: min(100%, 360px);
-    height: min(112vw, 450px);
+    height: clamp(290px, 96cqi, 380px);
   }
   .ab__cap {
     grid-template-columns: minmax(0, 1fr) auto;

@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUpRight } from '@phosphor-icons/react'
+import { ArrowDown, ArrowRight, ArrowUpRight } from '@phosphor-icons/react'
 import { Link } from 'react-router'
 import { chapterPath, workChapters, workSection } from '@/content/home'
 import { chapterPicture } from './chapter-picture'
@@ -30,6 +30,9 @@ export function WorkSection() {
           </h2>
           <div className="wb__head-side">
             <p>Stories, brand worlds, and digital experiences—gathered into one place.</p>
+            <span className="wb__swipe-hint" aria-hidden="true">
+              Swipe to explore <ArrowRight size={14} weight="bold" />
+            </span>
             <div className="wb__head-collection">
               <span><b>{String(workChapters.length).padStart(2, '0')}</b> collections</span>
               <a href="#work-collections" aria-label="Browse selected work collections">
