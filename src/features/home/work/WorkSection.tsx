@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowRight, ArrowUpRight } from '@phosphor-icons/react'
 import { Link } from 'react-router'
-import { chapterPath, workChapters, workSection } from '@/content/home'
+import { chapterPath, seoWritingChapter, workChapters, workSection } from '@/content/home'
+import type { WorkChapter } from '@/content/schema'
 import { chapterPicture } from './chapter-picture'
 import { ChapterFace } from './ChapterFace'
 import './work.css'
@@ -10,6 +11,12 @@ import './work.css'
 const TILE_SIZES = 'auto, (min-width: 1280px) 38vw, (min-width: 1024px) 62vw, 88vw'
 const DISPLAY_ORDER = ['featured', 'websites', 'apps', 'screens', 'case-studies', 'process', 'side-projects']
 const selectedChapters = [...workChapters].sort((a, b) => DISPLAY_ORDER.indexOf(a.id) - DISPLAY_ORDER.indexOf(b.id))
+const previewChapters: WorkChapter[] = [
+  ...['featured', 'apps', 'side-projects']
+    .map((id) => workChapters.find((chapter) => chapter.id === id))
+    .filter((chapter): chapter is WorkChapter => chapter !== undefined),
+  seoWritingChapter,
+]
 
 /**
  * Work: a bento of the eight chapters. Every chapter on one screen as tiles of different sizes, the biggest
@@ -18,25 +25,26 @@ const selectedChapters = [...workChapters].sort((a, b) => DISPLAY_ORDER.indexOf(
  */
 export function WorkSection({ standalone = false, preview = false }: { standalone?: boolean; preview?: boolean }) {
   const Title = standalone ? 'h1' : 'h2'
-  const visibleChapters = preview ? selectedChapters.slice(0, 3) : selectedChapters
+  const visibleChapters = preview ? previewChapters : selectedChapters
+  const collectionCount = String(visibleChapters.length).padStart(2, '0')
   return (
     <section id="work" className={`wk wb${standalone ? ' wb--page' : ''}${preview ? ' wb--preview' : ''}`} aria-labelledby="work-title">
       <header className="wb__head">
         <div className="wb__head-label">
           <p className="wk-eyebrow">{workSection.eyebrow}</p>
-          <span>PORTFOLIO INDEX <i>·</i> 01—{String(workChapters.length).padStart(2, '0')}</span>
+          <span>PORTFOLIO INDEX <i>·</i> 01—{collectionCount}</span>
         </div>
         <div className="wb__head-main">
           <Title id="work-title" className="wk-title">
             <span className="wk-title__thin">{workSection.titleThin}</span> <span className="wk-title__bold">{workSection.titleBold}</span>
           </Title>
           <div className="wb__head-side">
-            <p>Stories, brand worlds, and digital experiences—gathered into one place.</p>
+            <p>{preview ? 'A quick look at campaign content, SEO websites, graphic design, and published writing.' : 'Stories, brand worlds, and digital experiences—gathered into one place.'}</p>
             <span className="wb__swipe-hint" aria-hidden="true">
               Swipe to explore <ArrowRight size={14} weight="bold" />
             </span>
             <div className="wb__head-collection">
-              <span><b>{String(workChapters.length).padStart(2, '0')}</b> collections</span>
+              <span><b>{collectionCount}</b> collections</span>
               <a href="#work-collections" aria-label="Browse selected work collections">
                 <ArrowDown size={17} weight="bold" aria-hidden />
               </a>
@@ -84,7 +92,7 @@ export function WorkSection({ standalone = false, preview = false }: { standalon
                 </span>
                 <span className="wb__cap">
                   <span className="wb__cap-meta"><i>{String(index + 1).padStart(2, '0')}</i><span>{chapter.count} {chapter.unit}</span></span>
-                  <b>{chapter.title}</b>
+                  <b>{chapter.id === 'seo-writing' ? 'SEO Writing Published Works' : chapter.title}</b>
                   <span className="wb__cap-arrow" aria-hidden="true"><ArrowUpRight size={17} weight="bold" /></span>
                 </span>
               </Link>
