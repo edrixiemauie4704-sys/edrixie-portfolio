@@ -6,6 +6,11 @@ dist
 !.env.example
 scripts/out/
 
+# Local reference downloads (the live portfolio uses the optimized files in public/images/).
+/edrixie.html
+/edrixie_files/
+/edrixie.jpg
+
 
 # TypeScript incremental build state
 *.tsbuildinfo

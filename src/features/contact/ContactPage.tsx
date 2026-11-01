@@ -5,20 +5,32 @@ import { PageHeader } from '@/components/page/PageHeader'
 import { SocialLinks } from '@/components/brand/SocialLinks'
 import { contactPage as c } from '@/content/contact'
 import { allFaqs } from '@/content/faqs'
-import { mailtoHref, site } from '@/content/site'
+import { externalLinks, mailtoHref, site } from '@/content/site'
 import { contactJsonLd } from '@/lib/seo'
 import { ContactForm } from './ContactForm'
 import './contact.css'
 
 const pad2 = (n: number) => String(n).padStart(2, '0')
 
-/** The answers plate beside the form. Nested = inside a Home section, so every heading steps down one level. */
+/** The message form beside the answers plate. Nested = inside Home, so headings step down one level. */
 function ContactSheet({ nested }: { nested: boolean }) {
   const H = nested ? 'h3' : 'h2'
   return (
     <div className="ct-sheet">
+      <section className="ct-panel" aria-labelledby="ct-card-title">
+        <div className="ct-panel__topline">
+          <p className="pg-mono">01 <span>·</span> Start a conversation</p>
+          <span className="ct-panel__icon" aria-hidden="true"><EnvelopeSimple size={19} weight="regular" /></span>
+        </div>
+        <H id="ct-card-title" className="ct-panel__title">
+          {c.cardTitle}
+        </H>
+        <p className="ct-panel__body">{c.cardBody}</p>
+        <ContactForm nested={nested} />
+      </section>
+
       <section className="ct-plate" aria-labelledby="ct-faq-title">
-        <p className="pg-mono">{c.faqEyebrow}</p>
+        <p className="pg-mono ct-plate__eyebrow">02 <span>·</span> {c.faqEyebrow}</p>
         <H id="ct-faq-title" className="ct-plate__title">
           {c.faqTitle}. <span>{c.faqSub}</span>
         </H>
@@ -39,25 +51,19 @@ function ContactSheet({ nested }: { nested: boolean }) {
             <EnvelopeSimple size={16} weight="fill" aria-hidden />
             {site.email}
           </a>
+          <a className="ct-mail" href={externalLinks.whatsapp} target="_blank" rel="noreferrer">
+            WhatsApp · +63 953 256 5819
+          </a>
           <SocialLinks />
         </div>
-      </section>
-
-      <section className="ct-panel" aria-labelledby="ct-card-title">
-        <H id="ct-card-title" className="ct-panel__title">
-          {c.cardTitle}
-        </H>
-        <p className="ct-panel__body">{c.cardBody}</p>
-        <ContactForm nested={nested} />
       </section>
     </div>
   )
 }
 
 /**
- * Contact, "answers, then write": the answers on a plate,
- * one open at a time (native exclusive <details>), the form on the panel beside it. The address and
- * the socials sit under the answers for anyone who would rather write directly.
+ * Contact, "start a conversation": the form leads, with one-at-a-time answers and direct contact
+ * links beside it for visitors who prefer to write directly.
  */
 export function ContactPage({ page }: { page: PageRoute }) {
   return (

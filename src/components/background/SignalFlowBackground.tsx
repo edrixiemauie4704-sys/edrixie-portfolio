@@ -6,7 +6,7 @@ import './background.css'
 export type ContentLayout = 'sidebar-expanded' | 'sidebar-collapsed' | 'full-width'
 
 /** Medium strength, calm speed, no mouse reaction, calmer behind the text. */
-const SETTINGS: FlowSettings = { strength: 0.8, speed: 1, calm: true }
+const SETTINGS: FlowSettings = { strength: 0.12, speed: 0.65, calm: true }
 const CENTER_EASE = 0.08 // per frame: the calm zone glides with the content instead of jumping
 const BACKGROUND_DELAY_MS = 6000 // after load, for a visitor who has not touched anything yet
 

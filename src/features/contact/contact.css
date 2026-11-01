@@ -1,29 +1,83 @@
 /*
- * Contact, "answers, then write": the answers plate
- * (5 parts) beside the form panel (7 parts); one column under 820px of container.
+ * Contact: a message-first panel paired with a compact FAQ plate; one column under 820px.
  */
 
 .ct-sheet {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: 16px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+  align-items: stretch;
+  gap: clamp(16px, 2.2vw, 28px);
   margin-top: clamp(40px, 7vh, 56px);
+}
+.ct > .pg-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+  column-gap: clamp(24px, 6vw, 88px);
+  align-items: end;
+}
+.ct > .pg-head > .pg-eyebrow {
+  grid-column: 1 / -1;
+}
+.ct > .pg-head > .pg-title {
+  grid-column: 1;
+  max-width: 11ch;
+  font-size: clamp(3rem, 7cqi, 6.8rem);
+  line-height: .92;
+  letter-spacing: -.055em;
+}
+.ct > .pg-head > .pg-title > b {
+  color: var(--accent-deep);
+}
+.ct > .pg-head > .pg-lede {
+  grid-column: 2;
+  max-width: 38ch;
+  margin: 0 0 5px;
+  padding: 20px 0 20px 22px;
+  border-left: 2px solid var(--accent-deep);
+  font-size: clamp(16px, 1.5vw, 19px);
 }
 .ct-plate,
 .ct-panel {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--line);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
+  border-radius: clamp(22px, 2.6vw, 34px);
+  box-shadow: var(--shadow-sm);
 }
 .ct-plate {
-  padding: 28px 28px 24px;
+  padding: clamp(25px, 3vw, 38px);
   background: var(--surface-2);
 }
 .ct-panel {
-  padding: 32px;
-  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+  padding: clamp(26px, 3.5vw, 44px);
+  background: var(--surface-3);
+}
+.ct-panel__topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: clamp(26px, 3vw, 38px);
+}
+.ct-panel__topline > .pg-mono {
+  margin: 0;
+}
+.ct-panel__topline > .pg-mono > span,
+.ct-plate__eyebrow > span {
+  color: var(--accent-deep);
+}
+.ct-panel__icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: none;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface) 42%, transparent);
+  color: var(--accent-deep);
 }
 .ct-plate__title {
   margin: 12px 0 0;
@@ -31,6 +85,9 @@
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: -0.03em;
+}
+.ct-plate__eyebrow {
+  margin: 0;
 }
 .ct-plate__title > span {
   display: block;
@@ -204,7 +261,7 @@
   align-items: center;
   gap: 12px 20px;
 }
-/* The one primary action on the page: solid French blue, square corners like .pg-btn. */
+/* The one primary action on the page: solid palette accent, square corners like .pg-btn. */
 .ct-send {
   display: inline-flex;
   align-items: center;
@@ -313,18 +370,43 @@
 /* ---------- Narrow columns ---------- */
 
 @container (max-width: 820px) {
+  .ct > .pg-head {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0;
+  }
+  .ct > .pg-head > .pg-eyebrow,
+  .ct > .pg-head > .pg-title,
+  .ct > .pg-head > .pg-lede {
+    grid-column: 1;
+  }
+  .ct > .pg-head > .pg-title {
+    max-width: 12ch;
+    font-size: clamp(3rem, 10cqi, 5rem);
+  }
+  .ct > .pg-head > .pg-lede {
+    max-width: 52ch;
+    margin: 22px 0 0;
+  }
   .ct-sheet {
     grid-template-columns: minmax(0, 1fr);
   }
 }
 @container (max-width: 560px) {
   .ct-sheet {
-    margin-top: 40px;
+    gap: 14px;
+    margin-top: 32px;
   }
   .ct-plate,
   .ct-panel {
     padding: 24px 20px;
     border-radius: var(--radius-lg);
+  }
+  .ct-panel__topline {
+    margin-bottom: 22px;
+  }
+  .ct-panel__icon {
+    width: 42px;
+    height: 42px;
   }
   .ct-row2 {
     grid-template-columns: minmax(0, 1fr);

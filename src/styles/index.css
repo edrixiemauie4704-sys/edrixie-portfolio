@@ -68,6 +68,7 @@
   --ease-spring: var(--ease-spring);
   /* Geist (variable, 100-900). Display type pairs weight 100 with 700 at -0.05em. */
   --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
   /* Eyebrows and small caps labels: IBM Plex Mono, 400 / 500 / 600 / 700. */
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
 }

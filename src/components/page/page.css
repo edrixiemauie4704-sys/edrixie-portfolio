@@ -1,6 +1,5 @@
 /*
- * Standalone pages (Showcase, Proof): the shared anatomy.
- * Same voice as the Home section heads: mono eyebrow with a hairline, Geist 100 over 700 uppercase.
+ * Shared page anatomy: understated mono eyebrow, editorial display title, and readable lede.
  */
 
 .pg {
@@ -42,7 +41,7 @@
   color: var(--ink-3);
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 .pg-eyebrow > i {
@@ -55,15 +54,17 @@
 .pg-title {
   display: grid;
   margin: 0;
-  font-size: clamp(2rem, 6.2cqi, 5.4rem);
-  font-weight: 100;
-  line-height: 0.92;
-  letter-spacing: -0.045em;
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: clamp(2.3rem, 6.2cqi, 5.4rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.035em;
   text-wrap: balance;
 }
 .pg-title > b {
-  font-weight: 700;
+  color: var(--accent-deep);
+  font-weight: 400;
+  font-style: italic;
 }
 
 .pg-lede {
@@ -100,11 +101,11 @@
   min-height: 44px;
   padding: 13px 20px;
   border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
   color: var(--ink);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.01em;
   text-decoration: none;
   transition:
     border-color var(--dur-fast) var(--ease-spring),
@@ -113,6 +114,7 @@
 .pg-btn:hover {
   border-color: var(--accent);
   background: var(--accent-soft);
+  transform: translateY(-1px);
 }
 .pg-btn:focus-visible {
   outline: 2px solid var(--accent);

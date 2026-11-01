@@ -166,7 +166,7 @@ export function SidebarNav({ collapsed, onNavigate, onHoverChange }: Props) {
 
           {navEntries(group.id).map(renderEntry)}
 
-          {group.id === 'general' ? (
+          {group.id === 'appearance' ? (
             <button
               type="button"
               role="switch"

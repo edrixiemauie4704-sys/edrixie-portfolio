@@ -1,6 +1,5 @@
-import type { Image, ToolMark } from './schema'
-import { certification, externalLinks, site } from './site'
-import { tools } from './tools'
+import type { Image } from './schema'
+import { site } from './site'
 
 /**
  * The Home About section: the desk illustration stands on a hairline floor with the lead over its
@@ -10,28 +9,27 @@ export const aboutSection = {
   eyebrow: 'About',
   titleThin: "Hi, I'm",
   titleBold: `${site.name}.`,
-  lede: 'PLACEHOLDER - tell me what to put here: one sentence on what you do and for whom.',
-  lead: 'PLACEHOLDER - tell me what to put here: your background.',
-  leadQuiet: 'PLACEHOLDER - tell me what to put here: what you do now.',
+  lede: 'I began creating research-driven content in 2022, writing to make ideas easier to understand, more engaging, and more useful to readers.',
+  lead: 'Thoughtful content, made for people.',
+  leadQuiet: 'I start with audience research, then shape each piece to be clear, accurate, and genuinely useful.',
   note: {
-    company: `${site.brand} is my company`,
-    product: { label: 'Your Product', href: externalLinks.showcase },
-    rest: 'PLACEHOLDER - tell me what to put here: one sentence on how the product relates to your company, or delete this note.',
+    company: 'I begin by understanding the audience and the intent behind a search.',
+    product: { label: 'My writing focuses on clarity, accuracy, and readability.', href: 'https://itxmyportfolio.my.canva.site/applicant-edrixie-s-portfolio/writing-portfolio' },
+    rest: '',
   },
   picture: {
-    src: '/images/profile/desk.webp',
-    srcSet: '/images/profile/800/desk.webp 800w, /images/profile/desk.webp 1200w',
-    alt: `Illustration of ${site.name} at a desk, working at a monitor with a coffee beside them`,
-    width: 1200,
-    height: 889,
+    src: '/images/profile/edrixie-cutout.png',
+    alt: `Portrait of ${site.name}`,
+    width: 1100,
+    height: 1430,
   } satisfies Image,
 }
 
-export const capabilities: { title: string; tools: ToolMark[] }[] = [
-  { title: 'Role One', tools: [tools.toolA, tools.toolB, tools.toolC] },
-  { title: 'Role Two', tools: [tools.toolD, tools.toolE, tools.toolF, tools.toolG, tools.toolH] },
-  { title: 'Role Three', tools: [tools.toolD, tools.toolI, tools.toolJ, tools.toolK, tools.toolL] },
-  { title: 'Role Four', tools: [tools.toolF, tools.toolG, tools.toolH] },
+export const capabilities: { title: string }[] = [
+  { title: 'SEO content writing' },
+  { title: 'Digital content support' },
+  { title: 'Graphic design' },
+  { title: 'SEO website design' },
 ]
 
 export type AboutCredential = {
@@ -45,21 +43,7 @@ export type AboutCredential = {
 }
 
 export const credentials: AboutCredential[] = [
-  { id: 'cert', title: certification.title, detail: certification.detail, image: { ...certification.image!, alt: '' } },
-  { id: 'place', title: `Based ${site.timePlace}`, detail: 'Your time zone · Your hours' },
-  {
-    id: 'community',
-    title: 'Your Community',
-    detail: 'Your role',
-    href: '#',
-    image: { src: '/images/badges/64/community.webp', alt: '', width: 64, height: 64 },
-  },
-  {
-    id: 'partner',
-    title: 'Your Partner',
-    detail: 'Your role',
-    href: '#',
-    image: { src: '/images/badges/64/partner-light.webp', alt: '', width: 64, height: 64 },
-    imageDark: { src: '/images/badges/64/partner.webp', alt: '', width: 64, height: 64 },
-  },
+  { id: 'place', title: 'Research-led', detail: 'Audience and search intent come first.' },
+  { id: 'community', title: 'Reader-focused', detail: 'Clear, accurate, useful content.' },
+  { id: 'partner', title: 'Visual storytelling', detail: 'Design and digital content for brands.' },
 ]

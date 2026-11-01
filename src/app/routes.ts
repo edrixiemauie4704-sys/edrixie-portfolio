@@ -1,6 +1,5 @@
 import type { Icon } from '@phosphor-icons/react'
-import { Briefcase, Compass, Cube, Envelope, FileText, House, SealCheck, ShieldCheck, Stack, User } from '@phosphor-icons/react'
-import { workCount } from '@/content/work'
+import { Briefcase, Compass, Envelope, FileText, House, Images, Palette, ShieldCheck, Stack, User } from '@phosphor-icons/react'
 import { externalLinks, site } from '@/content/site'
 
 /**
@@ -8,12 +7,13 @@ import { externalLinks, site } from '@/content/site'
  * and every page title. Add a page = add one entry here.
  */
 
-export type NavGroupId = 'menu' | 'discover' | 'general'
+export type NavGroupId = 'menu' | 'discover' | 'general' | 'appearance'
 
 export const NAV_GROUPS: { id: NavGroupId; label: string }[] = [
-  { id: 'menu', label: 'Menu' },
-  { id: 'discover', label: 'Discover' },
-  { id: 'general', label: 'General' },
+  { id: 'menu', label: 'Explore' },
+  { id: 'general', label: 'About & Contact' },
+  { id: 'discover', label: 'Resources' },
+  { id: 'appearance', label: 'Appearance' },
 ]
 
 export type PageRoute = {
@@ -57,8 +57,8 @@ export const pages: PageRoute[] = [
     id: 'home',
     path: '/',
     label: 'Home',
-    title: `${SUFFIX} | Your Headline Here`,
-    description: 'PLACEHOLDER - tell me what to put here: the one-sentence search result description of you and what you do (under 160 characters).',
+    title: `${SUFFIX} | SEO Content Writer & Digital Content Specialist`,
+    description: 'Explore Edrixie’s SEO articles, website copy, digital marketing content, and graphic design portfolio.',
     icon: House,
     group: 'menu',
   },
@@ -67,12 +67,11 @@ export const pages: PageRoute[] = [
     id: 'work',
     draft: true,
     path: '/work',
-    label: 'Work',
+    label: 'Projects',
     title: `Work | ${SUFFIX}`,
-    description: 'PLACEHOLDER - tell me what to put here: one line on the kinds of work you show.',
+    description: 'SEO content writing, digital marketing support, published websites, and graphic design.',
     icon: Briefcase,
     group: 'menu',
-    badge: workCount,
     section: 'work',
   },
   {
@@ -82,7 +81,7 @@ export const pages: PageRoute[] = [
     path: '/services',
     label: 'Services',
     title: `Services | ${SUFFIX}`,
-    description: 'PLACEHOLDER - tell me what to put here: one line listing the services you offer.',
+    description: 'A look at the writing, digital content, website, and design work in the portfolio.',
     icon: Stack,
     group: 'menu',
     section: 'services',
@@ -94,40 +93,18 @@ export const pages: PageRoute[] = [
     path: '/about',
     label: 'About',
     title: `About ${SUFFIX}`,
-    description: 'PLACEHOLDER - tell me what to put here: one line on your background and where you are based.',
+    description: 'Edrixie is a content writer and digital content specialist creating research-driven online content since 2022.',
     icon: User,
-    group: 'menu',
+    group: 'general',
     section: 'about',
-  },
-  {
-    kind: 'page',
-    id: 'proof',
-    path: '/proof',
-    label: 'Proof',
-    title: `Proof | ${SUFFIX}`,
-    description: 'PLACEHOLDER - tell me what to put here: one line on the clients, testimonials and feedback this page shows.',
-    icon: SealCheck,
-    group: 'discover',
-    section: 'proof',
-  },
-  {
-    kind: 'page',
-    id: 'showcase',
-    path: '/showcase',
-    label: 'Showcase',
-    title: `Showcase | ${SUFFIX}`,
-    description: 'PLACEHOLDER - tell me what to put here: one line on the product or project you feature here.',
-    icon: Cube,
-    group: 'discover',
-    section: 'showcase',
   },
   {
     kind: 'page',
     id: 'contact',
     path: '/contact',
-    label: 'Contact',
+    label: 'FAQs / Contact',
     title: `Contact | ${SUFFIX}`,
-    description: 'PLACEHOLDER - tell me what to put here: one line inviting people to get in touch, and when you reply.',
+    description: 'Get in touch about content writing, digital marketing support, SEO website design, or graphic design.',
     icon: Envelope,
     group: 'general',
     section: 'contact',
@@ -155,10 +132,37 @@ export const pages: PageRoute[] = [
 export const externals: ExternalRoute[] = [
   {
     kind: 'external',
+    id: 'showcase',
+    href: externalLinks.designs,
+    label: 'Showcase',
+    description: 'Browse Edrixie’s Canva design showcase.',
+    icon: Images,
+    group: 'menu',
+  },
+  {
+    kind: 'external',
+    id: 'resume',
+    href: externalLinks.resume,
+    label: 'Resume',
+    description: 'View Edrixie’s resume.',
+    icon: FileText,
+    group: 'discover',
+  },
+  {
+    kind: 'external',
+    id: 'designs',
+    href: externalLinks.designs,
+    label: 'Canva designs',
+    description: 'Browse Edrixie’s Canva design portfolio.',
+    icon: Palette,
+    group: 'discover',
+  },
+  {
+    kind: 'external',
     id: 'resource',
     href: externalLinks.resource,
-    label: 'Resources',
-    description: 'PLACEHOLDER - tell me what to put here: one line on the off-site link (a blog, a guide, a store), or delete this entry.',
+    label: 'Previous portfolio',
+    description: 'Visit Edrixie’s previous portfolio, with writing, website, digital marketing, and graphic design samples.',
     icon: Compass,
     group: 'discover',
   },
@@ -166,7 +170,16 @@ export const externals: ExternalRoute[] = [
 
 /** Sidebar entries per group, in registry order (pages first, then external links). */
 export function navEntries(group: NavGroupId): NavEntry[] {
+  const order: Record<string, number> = {
+    home: 0,
+    work: 1,
+    services: 2,
+    showcase: 3,
+    about: 4,
+    contact: 5,
+  }
   return [...pages.filter((p) => p.group === group), ...externals.filter((e) => e.group === group)]
+    .sort((a, b) => (order[a.id] ?? 100) - (order[b.id] ?? 100))
 }
 
 /** Where a nav entry goes: its Home section when it has one, else its page. */

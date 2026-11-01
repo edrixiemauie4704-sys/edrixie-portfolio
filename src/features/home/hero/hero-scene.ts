@@ -11,6 +11,7 @@ export const heroScene: ScrollScene = (root, { smooth }) => {
 
   gsap
     .timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: root, start: 'top top', end: 'bottom top', scrub: true } })
+    .to('.hero__eyebrow', { y: -40, autoAlpha: 0, duration: 0.35 }, 0)
     .to('.hero__foot', { y: -60, autoAlpha: 0, duration: 0.35 }, 0)
     .to('.hero__title', { y: '38vh', scale: 0.9, duration: 1 }, 0)
     .to('.hero__title', { opacity: 0, duration: 0.55 }, 0.3)

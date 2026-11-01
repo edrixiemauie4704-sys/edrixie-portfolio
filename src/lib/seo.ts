@@ -1,4 +1,4 @@
-import { certification, site } from '@/content/site'
+import { site } from '@/content/site'
 import type { Faq, ProductFilm, ProductTab, Quote, VideoTestimonial, WorkChapter } from '@/content/schema'
 
 /** Absolute URL for a site path or an already absolute link. */
@@ -18,12 +18,11 @@ export function chapterJsonLd(chapter: WorkChapter, path: string): string {
   const person = { '@type': 'Person', name: site.name, url: site.url, jobTitle: site.role }
   const builds = chapter.items.length
     ? chapter.items.map((item) => ({
-        '@type': chapter.id === 'apps' ? 'SoftwareApplication' : 'CreativeWork',
+        '@type': 'CreativeWork',
         name: item.name,
         description: item.summary,
         ...(item.href ? { url: absoluteUrl(item.href) } : {}),
         ...(item.image ? { image: absoluteUrl(item.image.src) } : {}),
-        ...(chapter.id === 'apps' ? { applicationCategory: 'MobileApplication' } : {}),
         creator: person,
       }))
     : [
@@ -96,29 +95,21 @@ function videoObject(v: { name: string; description: string; thumbnail: string; 
   }
 }
 
-type PersonLd = { description: string; skills: string[]; credential: { name: string; id: string; url?: string }; sameAs: string[]; companyUrl: string }
+type PersonLd = { description: string; skills: string[]; sameAs: string[]; companyUrl?: string }
 
 /**
- * Home's About section: you as a Person (the `#person` node the other pages point at), with your
- * certification as a credential and the profiles that confirm who you are (content/site.ts).
+ * Home's About section: you as a Person (the `#person` node the other pages point at), with the
+ * profiles that confirm who you are (content/site.ts).
  */
-export function personJsonLd({ description, skills, credential, sameAs, companyUrl }: PersonLd): string {
+export function personJsonLd({ description, skills, sameAs, companyUrl }: PersonLd): string {
   return serialize([
     {
       ...person(),
       description,
       image: absoluteUrl(site.avatar.src),
-      address: { '@type': 'PostalAddress', addressCountry: site.countryCode },
-      worksFor: { '@type': 'Organization', name: site.brand, url: companyUrl },
+      ...(site.countryCode ? { address: { '@type': 'PostalAddress', addressCountry: site.countryCode } } : {}),
       knowsAbout: skills,
-      hasCredential: {
-        '@type': 'EducationalOccupationalCredential',
-        name: credential.name,
-        credentialCategory: 'certification',
-        identifier: credential.id,
-        ...(certification.issuer ? { recognizedBy: { '@type': 'Organization', name: certification.issuer } } : {}),
-        ...(credential.url ? { url: credential.url } : {}),
-      },
+      ...(companyUrl && companyUrl !== '#' ? { worksFor: { '@type': 'Organization', name: site.brand, url: companyUrl } } : {}),
       sameAs,
     },
   ])

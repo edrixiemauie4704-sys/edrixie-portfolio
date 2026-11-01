@@ -1,37 +1,51 @@
 /*
- * Home hero. Type sizes use container units (cqi) so the bold line, "MAKE IT YOURS.",
- * always fits the content column whatever the sidebar is doing.
+ * Home hero. Type sizes use container units (cqi) so the display headline always fits the content
+ * column whatever the sidebar is doing.
  */
 
 .hero {
   container-type: inline-size;
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(260px, 0.78fr);
   align-items: center;
-  justify-content: center;
+  gap: clamp(28px, 5cqi, 76px);
   /* svh, not dvh: the hero must not resize while a phone's address bar slides away mid-scroll. */
   min-height: 100svh;
-  padding: 96px 24px;
+  padding: clamp(64px, 8vh, 104px) clamp(24px, 5cqi, 76px);
   /* The parting lines travel sideways on scroll; clip them here so the page never scrolls sideways. */
   overflow-x: clip;
-  text-align: center;
+  text-align: left;
+}
+
+.hero__copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  max-width: 760px;
 }
 
 .hero__title {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin: 0;
-  /* "MAKE IT YOURS." in Geist 700 at -0.05em is 7.20em wide: 13.05cqi fills ~94% of the column (7.20 x
-     13.05 = 94). The 2.3rem floor keeps the smallest phones' line readable (~265px at 320). To re-measure
-     for your own words: set the bold line in the browser, read its width in em (range width / font-size),
-     and use 94 / that width. Keep the thin line narrower than the bold one, or it overflows. */
-  font-size: clamp(2.3rem, 13.05cqi, 10rem);
-  line-height: 0.86;
-  letter-spacing: -0.05em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  transform-origin: 50% 0;
+  font-size: clamp(3.2rem, 8.4cqi, 7.5rem);
+  line-height: 0.99;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+  transform-origin: 0 0;
+}
+
+.hero__eyebrow {
+  margin: 0 0 clamp(18px, 2.4cqi, 28px);
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  line-height: 1.5;
+  animation: hero-rise var(--dur-slow) var(--ease-spring) both;
 }
 
 .hero__layer {
@@ -44,37 +58,115 @@
   animation: hero-rise var(--dur-slow) var(--ease-spring) both;
 }
 .hero__line--thin {
-  font-weight: 100;
+  font-weight: 300;
   color: var(--ink);
 }
 .hero__line--bold {
-  font-weight: 700;
-  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 0.98em;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--accent-deep);
   animation-delay: 90ms;
 }
 
 .hero__foot {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .hero__sub {
-  max-width: 60ch; /* two lines on desktop */
-  margin: 40px 0 0;
+  max-width: 48ch;
+  margin: clamp(18px, 2.6cqi, 28px) 0 0;
   color: var(--ink-2);
-  font-family: var(--font-mono);
-  font-size: 15px;
-  line-height: 1.7;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: clamp(15px, 1.5cqi, 18px);
+  line-height: 1.65;
   text-wrap: balance;
   animation: hero-rise var(--dur-slow) var(--ease-spring) 180ms both;
 }
 
 .hero__cta {
-  margin-top: 40px;
+  margin-top: 24px;
   animation: hero-rise var(--dur-slow) var(--ease-spring) 260ms both;
+}
+
+.hero__focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: clamp(22px, 3cqi, 34px) 0 0;
+  padding: 0;
+  list-style: none;
+  animation: hero-rise var(--dur-slow) var(--ease-spring) 320ms both;
+}
+.hero__focus > li {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 50%, transparent);
+  color: var(--ink-2);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.hero__visual {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  justify-self: end;
+  width: min(100%, 470px);
+  height: clamp(380px, 43cqi, 570px);
+  margin: 0;
+  isolation: isolate;
+  animation: hero-rise var(--dur-slow) var(--ease-spring) 140ms both;
+}
+.hero__portrait-orbit {
+  position: absolute;
+  z-index: -1;
+  bottom: 4%;
+  width: 88%;
+  aspect-ratio: 0.92;
+  border: 1px solid color-mix(in srgb, var(--accent-deep) 18%, transparent);
+  border-radius: 48% 48% 42% 42%;
+  background:
+    radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--accent) 17%, var(--surface)), transparent 70%),
+    color-mix(in srgb, var(--accent) 12%, var(--surface));
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--surface) 65%, transparent);
+}
+.hero__visual > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 16px 25px color-mix(in srgb, var(--ink) 12%, transparent));
+}
+.hero__portrait-note {
+  position: absolute;
+  right: -2%;
+  bottom: 8%;
+  display: grid;
+  gap: 6px;
+  min-width: 170px;
+  padding: 12px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  box-shadow: var(--shadow-md);
+}
+.hero__portrait-note > span {
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: .16em;
+}
+.hero__portrait-note > b {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 /* Starts at 0.1, not 0: Chrome never counts a fully transparent first paint as the Largest Contentful
@@ -92,11 +184,55 @@
   }
 }
 
-/* Phones: the bar above takes 56px, so the hero fills the rest of the first screen. */
+/* Phones: keep the portrait compact so the introduction and next-section cue fit together. */
 @media (max-width: 1023px) {
   .hero {
     min-height: calc(100svh - 56px);
-    padding-block: 64px;
+    padding: 48px clamp(24px, 6vw, 52px) 36px;
+    grid-template-columns: minmax(0, 1fr) minmax(210px, 0.68fr);
+    gap: 22px;
+  }
+  .hero__title {
+    font-size: clamp(3rem, 7.2cqi, 5.4rem);
+  }
+  .hero__visual {
+    width: 100%;
+    height: clamp(340px, 48cqi, 480px);
+  }
+  .hero__portrait-note {
+    right: -3%;
+    min-width: 150px;
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: 12px;
+    padding-top: 42px;
+  }
+  .hero__title {
+    font-size: clamp(2.8rem, 12cqi, 4rem);
+  }
+  .hero__visual {
+    justify-self: center;
+    width: min(68%, 260px);
+    height: clamp(190px, 32svh, 260px);
+    margin-top: -4px;
+  }
+  .hero__portrait-note {
+    right: -28%;
+    bottom: 7%;
+    min-width: 142px;
+  }
+  .hero__focus {
+    margin-top: 20px;
+  }
+  .hero__focus > li {
+    padding: 7px 10px;
+    font-size: 10px;
   }
 }
 
@@ -114,11 +250,22 @@
     .hero .hero__title {
       animation: hero-sink linear both;
     }
+    .hero .hero__eyebrow {
+      animation: hero-leave linear both;
+    }
     .hero .hero__foot {
       animation: hero-leave linear both;
     }
+    .hero .hero__focus {
+      animation: hero-leave linear both;
+    }
     .app .hero .hero__title,
+    .app .hero .hero__eyebrow,
     .app .hero .hero__foot {
+      animation-timeline: --hero;
+      animation-range: exit 0% exit 100%;
+    }
+    .app .hero .hero__focus {
       animation-timeline: --hero;
       animation-range: exit 0% exit 100%;
     }
@@ -142,8 +289,13 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero__line,
+  .hero__eyebrow,
   .hero__sub,
   .hero__cta {
+    animation: hero-fade 200ms ease both;
+  }
+  .hero__visual,
+  .hero__focus {
     animation: hero-fade 200ms ease both;
   }
 }

@@ -11,6 +11,8 @@ export type Image = {
   height: number
   /** Smaller copies for `srcset` (scripts/make-image-variants.py), where a picture shows small. */
   srcSet?: string
+  /** Optional viewport into a supplied portfolio screenshot used as a thumbnail source. */
+  crop?: { x: number; y: number; width: number; height: number }
 }
 
 export type LinkRef = {
@@ -27,7 +29,7 @@ export type Faq = {
 
 /** A profile link shown as a logo button. `icon` picks the glyph in SocialIcon. */
 export type SocialLink = LinkRef & {
-  icon: 'facebook' | 'linkedin' | 'discord' | 'github' | 'x'
+  icon: 'facebook' | 'linkedin' | 'instagram' | 'discord' | 'github' | 'x'
   /** Someone else's page (a partner, a community), not your own profile: kept out of the Person JSON-LD sameAs. */
   partner?: true
 }

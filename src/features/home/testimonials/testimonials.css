@@ -1,0 +1,28 @@
+.ts {
+  --gutter: clamp(16px, 3.5vw, 56px);
+  container-type: inline-size;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: clamp(64px, 10vh, 112px) var(--gutter);
+  scroll-margin-top: 56px;
+}
+
+@media (min-width: 1024px) {
+  .ts {
+    scroll-margin-top: 0;
+  }
+}
+
+.ts__inner {
+  padding: clamp(28px, 5cqi, 56px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+}
+
+.ts__note {
+  margin: 20px 0 0;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.6;
+}

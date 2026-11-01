@@ -1,6 +1,7 @@
 import type { Image, WorkChapter } from '@/content/schema'
 
-const landscape = (image?: Image) => (image && image.width >= image.height ? image : undefined)
+const landscape = (image?: Image) =>
+  image && (image.crop ? image.crop.width >= image.crop.height : image.width >= image.height) ? image : undefined
 
 /**
  * A chapter's tile picture: the one picked for it (`tile`), else its lead capture, else its first build

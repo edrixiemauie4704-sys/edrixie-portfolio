@@ -26,12 +26,21 @@
   border-radius: 10px;
   color: var(--ink-2);
   transition: color 160ms ease;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .social-key[data-icon='facebook'] {
   --brand: var(--brand-facebook);
 }
 .social-key[data-icon='linkedin'] {
   --brand: var(--brand-linkedin);
+}
+.social-key[data-icon='instagram'] {
+  --brand: #e4405f;
 }
 .social-key[data-icon='discord'] {
   --brand: var(--brand-discord);

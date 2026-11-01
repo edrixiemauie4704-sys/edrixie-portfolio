@@ -1,10 +1,10 @@
-import { chapterPath, workChapters } from '@/content/home'
+import { chapterPath, workChapters, seoWritingChapter } from '@/content/home'
 import { site } from '@/content/site'
 import { pages } from './routes'
 
 /** Every indexable path: each built page (drafts are placeholders) plus each Work chapter. Read at build by vite.config.ts. */
 export function sitemapPaths(): string[] {
-  return [...pages.filter((page) => !page.draft).map((page) => page.path), ...workChapters.map((chapter) => chapterPath(chapter.id))]
+  return [...pages.filter((page) => !page.draft).map((page) => page.path), ...workChapters.map((chapter) => chapterPath(chapter.id)), chapterPath(seoWritingChapter.id)]
 }
 
 /**
@@ -19,7 +19,7 @@ export function llmsTxt(): string {
     '',
     `> ${home.description}`,
     '',
-    `${site.role}, ${site.location}. Email: ${site.email}`,
+    `${site.role}. Email: ${site.email}`,
     '',
     '## Pages',
     '',
@@ -28,6 +28,7 @@ export function llmsTxt(): string {
     '## Work',
     '',
     ...workChapters.map((chapter) => link(chapter.title, chapterPath(chapter.id), chapter.description)),
+    link(seoWritingChapter.title, chapterPath(seoWritingChapter.id), seoWritingChapter.description),
     '',
   ].join('\n')
 }

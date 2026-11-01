@@ -1,6 +1,6 @@
 import { ArrowUpRight, MapPin } from '@phosphor-icons/react'
 import { aboutSection, capabilities, credentials, type AboutCredential } from '@/content/about'
-import { certification, externalLinks, socials } from '@/content/site'
+import { externalLinks, socials } from '@/content/site'
 import { personJsonLd } from '@/lib/seo'
 import './about.css'
 
@@ -9,8 +9,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0')
 const personLd = personJsonLd({
   description: aboutSection.lede,
   skills: capabilities.map((c) => c.title),
-  credential: { name: certification.title, id: certification.detail.replace(/^(Member|Credential) ID /, ''), url: certification.href },
-  sameAs: [...socials.filter((s) => !s.partner).map((s) => s.href), ...(certification.href ? [certification.href] : [])],
+  sameAs: socials.filter((s) => !s.partner).map((s) => s.href),
   companyUrl: externalLinks.company,
 })
 
@@ -50,21 +49,32 @@ export function AboutSection() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: personLd }} />
       <header>
         <p className="wk-eyebrow">{s.eyebrow}</p>
-        <h2 id="ab-title" className="wk-title">
-          <span>{s.titleThin}</span> <span className="wk-title__bold">{s.titleBold}</span>
+        <h2 id="ab-title" className="ab__title">
+          {s.titleThin} <span>{s.titleBold}</span>
         </h2>
         <p className="ab__lede">{s.lede}</p>
       </header>
 
-      <div className="ab__stage">
-        <p className="ab__lead">
-          {s.lead} <span>{s.leadQuiet}</span>
-        </p>
+      <div className="ab__story">
+        <div className="ab__story-copy">
+          <h3 className="ab__lead">{s.lead}</h3>
+          <p className="ab__lead-quiet">{s.leadQuiet}</p>
+          <ul className="ab__caps">
+            {capabilities.map((c, i) => (
+              <li key={c.title} className="ab__cap">
+                <span className="ab__cap-title">{c.title}</span>
+                <span className="ab__cap-i" aria-hidden>
+                  {pad2(i + 1)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
         <div className="ab__pic">
           <img
             src={s.picture.src}
             srcSet={s.picture.srcSet}
-            sizes="auto, (min-width: 1024px) 46vw, 92vw"
+            sizes="auto, (min-width: 1024px) 32vw, 92vw"
             alt={s.picture.alt}
             width={s.picture.width}
             height={s.picture.height}
@@ -76,29 +86,12 @@ export function AboutSection() {
 
       <div className="ab__below">
         <p className="ab__note">
-          <strong>{s.note.company}</strong>, and{' '}
+          <strong>{s.note.company}</strong>{' '}
           <a href={s.note.product.href} target="_blank" rel="noopener noreferrer">
             {s.note.product.label}
           </a>{' '}
           {s.note.rest}
         </p>
-        <ul className="ab__caps">
-          {capabilities.map((c, i) => (
-            <li key={c.title} className="ab__cap">
-              <span className="ab__keys">
-                {c.tools.map((t) => (
-                  <span key={t.name} className="ab__key" title={t.name}>
-                    <img src={t.logo} alt={t.name} width={20} height={20} loading="lazy" decoding="async" />
-                  </span>
-                ))}
-              </span>
-              <span className="ab__cap-title">{c.title}</span>
-              <span className="ab__cap-i" aria-hidden>
-                {pad2(i + 1)}
-              </span>
-            </li>
-          ))}
-        </ul>
       </div>
 
       <div className="ab__creds">

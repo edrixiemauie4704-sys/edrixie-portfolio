@@ -1,4 +1,4 @@
-import { DiscordLogo, FacebookLogo, GithubLogo, LinkedinLogo, XLogo } from '@phosphor-icons/react'
+import { DiscordLogo, FacebookLogo, GithubLogo, InstagramLogo, LinkedinLogo, XLogo } from '@phosphor-icons/react'
 import type { SocialLink } from '@/content/schema'
 
 /** Glyph for a social link (Phosphor brand icons). Add a network: extend `SocialLink['icon']` in
@@ -9,6 +9,8 @@ export function SocialIcon({ icon, size = 20 }: { icon: SocialLink['icon']; size
       return <FacebookLogo size={size} weight="fill" aria-hidden />
     case 'linkedin':
       return <LinkedinLogo size={size} weight="fill" aria-hidden />
+    case 'instagram':
+      return <InstagramLogo size={size} weight="fill" aria-hidden />
     case 'discord':
       return <DiscordLogo size={size} weight="fill" aria-hidden />
     case 'github':

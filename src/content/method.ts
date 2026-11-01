@@ -2,12 +2,12 @@ import type { MethodStep } from './schema'
 
 /** Your method: the three jobs your service does for a client, in order. It names the steps of the Home automation diagram. */
 export const method = {
-  eyebrow: 'Your Method',
-  title: 'Attract. Nurture. Convert.',
-  summary: 'PLACEHOLDER - tell me what to put here: one line on the three jobs your work does for a client, in order.',
+  eyebrow: 'My Approach',
+  title: 'Research. Write. Refine.',
+  summary: 'I start with the audience and search intent, shape the story with clear writing, then refine it for accuracy, readability, and SEO.',
   steps: [
-    { name: 'Attract', body: 'PLACEHOLDER - tell me what to put here: one short line on step one.', inputs: ['Input A', 'Input B', 'Input C', 'Input D'] },
-    { name: 'Nurture', body: 'PLACEHOLDER - tell me what to put here: one short line on step two.', inputs: ['Input A', 'Input B', 'Input C'] },
-    { name: 'Convert', body: 'PLACEHOLDER - tell me what to put here: one short line on step three.', inputs: ['Input A', 'Input B', 'Input C'] },
+    { name: 'Research', body: 'Understand the topic, audience, and intent behind the search.', inputs: ['Topic research', 'Audience needs', 'Search intent', 'Source review'] },
+    { name: 'Write', body: 'Turn the research into useful, engaging content with a clear structure.', inputs: ['Article outline', 'Clear language', 'Useful detail'] },
+    { name: 'Refine', body: 'Review accuracy, readability, and SEO before the final handoff.', inputs: ['Fact check', 'Readability', 'SEO review'] },
   ] satisfies MethodStep[],
 }

@@ -37,9 +37,11 @@ export function SidebarPanel({ variant, collapsed = false, onNavigate, onHoverCh
   return (
     <div ref={panelRef} className="sb-panel" data-lenis-prevent data-variant={variant} data-collapsed={collapsed}>
       <div className="sb-head">
-        <p className="sb-clock sb-fade">
-          <time dateTime={time.iso}>{time.label}</time> {site.timePlace}
-        </p>
+        {site.timePlace ? (
+          <p className="sb-clock sb-fade">
+            <time dateTime={time.iso}>{time.label}</time> {site.timePlace}
+          </p>
+        ) : null}
         <Link to="/" className="sb-logo" onClick={onNavigate} aria-label={`${site.brand} home`}>
           <BrandMark className="sb-logo__mark" />
           <span className="sb-logo__name sb-fade" aria-hidden>
@@ -69,7 +71,7 @@ export function SidebarPanel({ variant, collapsed = false, onNavigate, onHoverCh
           </span>
         </Link>
 
-        <SocialLinks className="sb-socials sb-fade" />
+        <SocialLinks className="sb-socials sb-fade" showThemeToggle />
 
         {headerAction ? <div className="sb-head__action">{headerAction}</div> : null}
       </div>
@@ -80,6 +82,7 @@ export function SidebarPanel({ variant, collapsed = false, onNavigate, onHoverCh
           <SidebarNav collapsed={collapsed} onNavigate={onNavigate} onHoverChange={onHoverChange} />
         </nav>
       </div>
+      <p className="sb-copyright sb-fade">© {new Date().getFullYear()} {site.name}</p>
     </div>
   )
 }
