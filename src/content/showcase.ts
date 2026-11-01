@@ -10,7 +10,7 @@ export const showcasePage = {
   titleBold: 'shown in full detail.',
   lede: 'PLACEHOLDER - tell me what to put here: two sentences on the product or project you feature, who it is for and the main things it does.',
   footnote: 'PLACEHOLDER - tell me what to put here: one short line on how it was built or where it runs.',
-  cta: { label: 'Open Product Name', href: externalLinks.showcase, external: true },
+  cta: { label: 'Browse Canva designs', href: externalLinks.designs, external: true },
   roomsTitle: 'The five rooms',
 }
 

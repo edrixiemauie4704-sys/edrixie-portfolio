@@ -1,6 +1,6 @@
 import { ArrowUpRight, MapPin } from '@phosphor-icons/react'
 import { aboutSection, capabilities, credentials, type AboutCredential } from '@/content/about'
-import { externalLinks, socials } from '@/content/site'
+import { socials } from '@/content/site'
 import { personJsonLd } from '@/lib/seo'
 import './about.css'
 
@@ -10,7 +10,6 @@ const personLd = personJsonLd({
   description: aboutSection.lede,
   skills: capabilities.map((c) => c.title),
   sameAs: socials.filter((s) => !s.partner).map((s) => s.href),
-  companyUrl: externalLinks.company,
 })
 
 function Credential({ c }: { c: AboutCredential }) {
@@ -73,7 +72,6 @@ export function AboutSection() {
         <div className="ab__pic">
           <img
             src={s.picture.src}
-            srcSet={s.picture.srcSet}
             sizes="auto, (min-width: 1024px) 32vw, 92vw"
             alt={s.picture.alt}
             width={s.picture.width}
