@@ -123,12 +123,13 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
         <section className="ab__cv" aria-labelledby="ab-cv-title">
           <div className="ab__cv-heading">
             <p className="pg-mono">Resume · Full profile</p>
-            <h2 id="ab-cv-title">Experience, education <i>&amp;</i> skills</h2>
-            <p>{resumeProfile.summary}</p>
+            <div className="ab__cv-heading-main">
+              <h2 id="ab-cv-title">Experience, education <i>&amp;</i> skills</h2>
+              <p>{resumeProfile.summary}</p>
+            </div>
           </div>
 
           <div className="ab__cv-contact" aria-label="Resume contact details">
-            <strong>{resumeProfile.name}</strong>
             <a href={`tel:${resumeProfile.phone.replaceAll(' ', '')}`}>{resumeProfile.phone}</a>
             <a href={`mailto:${site.email}`}>{site.email}</a>
             <span>{resumeProfile.location}</span>
@@ -136,14 +137,21 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
             <a href={externalLinks.resource} target="_blank" rel="noreferrer">Previous portfolio</a>
           </div>
 
+          <nav className="ab__cv-nav" aria-label="Resume sections">
+            <a href="#ab-cv-experience">Experience <span>04</span></a>
+            <a href="#ab-cv-education">Education <span>02</span></a>
+            <a href="#ab-cv-skills">Skills <span>{String(resumeSkills.length).padStart(2, '0')}</span></a>
+          </nav>
+
           <div className="ab__cv-grid">
             <section className="ab__cv-experience" aria-labelledby="ab-cv-experience">
               <h3 id="ab-cv-experience">Work experience</h3>
-              {resumeExperience.map((job) => (
+              {resumeExperience.map((job, index) => (
                 <article className="ab__cv-entry" key={`${job.organization}-${job.role}`}>
+                  <span className="ab__cv-entry-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                   <div className="ab__cv-entry-head">
                     <div><h4>{job.role}</h4><p>{job.organization}</p></div>
-                    <time>{job.dates}</time>
+                    <time><span>{job.dates}</span></time>
                   </div>
                   <ul>{job.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>
                 </article>
