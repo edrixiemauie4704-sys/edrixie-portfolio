@@ -1,4 +1,4 @@
-import { ArrowUpRight, Briefcase, Envelope, FileText, Images, Stack, User } from '@phosphor-icons/react'
+import { ArrowUpRight, Briefcase, Envelope, Images, Stack, User } from '@phosphor-icons/react'
 import { Link } from 'react-router'
 import { tools } from '@/content/tools'
 import { site } from '@/content/site'
@@ -9,9 +9,8 @@ const destinations = [
   { label: 'Projects', detail: 'Writing, websites, and brand work', href: '/work', Icon: Briefcase, number: '01' },
   { label: 'Services', detail: 'Ways I can support your next project', href: '/services', Icon: Stack, number: '02' },
   { label: 'Showcase', detail: 'A visual tour of selected work', href: '/showcase', Icon: Images, number: '03' },
-  { label: 'About', detail: 'My approach, strengths, and background', href: '/about', Icon: User, number: '04' },
-  { label: 'Resume', detail: 'View or print my profile', href: '/resume', Icon: FileText, number: '05' },
-  { label: 'Contact', detail: 'Let’s talk about your project', href: '/contact', Icon: Envelope, number: '06' },
+  { label: 'About', detail: 'My approach, strengths, and resume', href: '/about', Icon: User, number: '04' },
+  { label: 'Contact', detail: 'Let’s talk about your project', href: '/contact', Icon: Envelope, number: '05' },
 ]
 
 const featuredTools = [

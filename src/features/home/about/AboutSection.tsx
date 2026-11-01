@@ -1,6 +1,6 @@
-import { ArrowUpRight, MapPin } from '@phosphor-icons/react'
+import { ArrowUpRight, MapPin, Printer } from '@phosphor-icons/react'
 import { aboutSection, capabilities, credentials, type AboutCredential } from '@/content/about'
-import { socials } from '@/content/site'
+import { externalLinks, site, socials } from '@/content/site'
 import { personJsonLd } from '@/lib/seo'
 import './about.css'
 
@@ -48,12 +48,30 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
     <section id="about" className="ab" aria-labelledby="ab-title">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: personLd }} />
       <header>
-        <p className="wk-eyebrow">{s.eyebrow}</p>
+        <p className="wk-eyebrow">{standalone ? 'About · Resume' : s.eyebrow}</p>
         <Title id="ab-title" className="ab__title">
           {s.titleThin} <span>{s.titleBold}</span>
         </Title>
         <p className="ab__lede">{s.lede}</p>
       </header>
+
+      {standalone ? (
+        <section className="ab__resume" aria-label="Resume summary">
+          <div className="ab__resume-intro">
+            <p className="pg-mono">Resume at a glance</p>
+            <strong>Writing and content work since 2022</strong>
+            <span>{site.timePlace}</span>
+          </div>
+          <div className="ab__resume-actions">
+            <a className="pg-btn" href={externalLinks.resume} target="_blank" rel="noreferrer">
+              Open full resume <ArrowUpRight size={16} weight="bold" aria-hidden />
+            </a>
+            <button className="pg-btn" type="button" onClick={() => window.print()}>
+              <Printer size={16} weight="bold" aria-hidden /> Print this page
+            </button>
+          </div>
+        </section>
+      ) : null}
 
       <div className="ab__story">
         <div className="ab__story-copy">

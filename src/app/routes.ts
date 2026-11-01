@@ -97,20 +97,10 @@ export const pages: PageRoute[] = [
     id: 'about',
     path: '/about',
     label: 'About',
-    title: `About ${SUFFIX}`,
-    description: 'Edrixie is a content writer and digital content specialist creating research-driven online content since 2022.',
+    title: `About & Resume | ${SUFFIX}`,
+    description: 'Learn about Edrixie’s approach, strengths, and content work since 2022, then open or print her resume profile.',
     icon: User,
     group: 'menu',
-  },
-  {
-    kind: 'page',
-    id: 'resume',
-    path: '/resume',
-    label: 'Resume',
-    title: `Resume | ${SUFFIX}`,
-    description: 'View Edrixie’s printable portfolio profile or open the full resume.',
-    icon: FileText,
-    group: 'discover',
   },
   {
     kind: 'page',
@@ -172,7 +162,6 @@ export function navEntries(group: NavGroupId): NavEntry[] {
     showcase: 3,
     about: 4,
     contact: 5,
-    resume: 0,
   }
   return [...pages.filter((p) => p.group === group), ...externals.filter((e) => e.group === group)]
     .sort((a, b) => (order[a.id] ?? 100) - (order[b.id] ?? 100))

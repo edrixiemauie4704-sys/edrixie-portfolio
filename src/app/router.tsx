@@ -6,7 +6,6 @@ import { LegalPage } from '@/features/legal/LegalPage'
 import { ProjectsPage } from '@/features/pages/ProjectsPage'
 import { ServicesPage } from '@/features/pages/ServicesPage'
 import { AboutPage } from '@/features/pages/AboutPage'
-import { ResumePage } from '@/features/pages/ResumePage'
 import { ShowcasePage } from '@/features/pages/PortfolioShowcasePage'
 import { AppShell } from './AppShell'
 import { RouteStage } from './RouteStage'
@@ -19,7 +18,6 @@ const PAGE_COMPONENTS: Partial<Record<string, ComponentType<{ page: PageRoute }>
   work: ProjectsPage,
   services: ServicesPage,
   about: AboutPage,
-  resume: ResumePage,
   showcase: ShowcasePage,
   privacy: LegalPage,
   terms: LegalPage,
@@ -49,6 +47,6 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <AppShell />,
-    children: [...pages.map(routeFor), { path: '*', element: <RouteStage title={notFoundTitle} label="Page not found" /> }],
+    children: [...pages.map(routeFor), { path: 'resume', element: <Navigate to="/about" replace /> }, { path: '*', element: <RouteStage title={notFoundTitle} label="Page not found" /> }],
   },
 ])
