@@ -22,6 +22,13 @@ export function LegalPage({ page }: { page: PageRoute }) {
             {s.paragraphs.map((p) => (
               <p key={p}>{p}</p>
             ))}
+            {s.links?.length ? (
+              <ul className="lg-links">
+                {s.links.map((link) => (
+                  <li key={link.href}><a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a></li>
+                ))}
+              </ul>
+            ) : null}
           </section>
         ))}
       </div>

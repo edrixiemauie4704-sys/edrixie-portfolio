@@ -21,3 +21,19 @@
   font-size: 15.5px;
   line-height: 1.65;
 }
+.lg-links {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.lg-links a {
+  color: var(--accent-deep);
+  font-size: 14px;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+.lg-links a:hover { text-decoration-color: currentColor; }
+.lg-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }

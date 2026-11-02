@@ -118,7 +118,7 @@ export const pages: PageRoute[] = [
     path: '/privacy',
     label: 'Privacy Policy',
     title: `Privacy Policy | ${SUFFIX}`,
-    description: 'What this site stores, what it does not, and how to ask for your data.',
+    description: 'How Edrixie’s portfolio handles contact messages, browser preferences, hosting data, and privacy requests.',
     icon: ShieldCheck,
   },
   {
@@ -127,7 +127,7 @@ export const pages: PageRoute[] = [
     path: '/terms',
     label: 'Terms of Service',
     title: `Terms of Service | ${SUFFIX}`,
-    description: 'The terms for using this portfolio site.',
+    description: 'Terms for browsing Edrixie’s portfolio, viewing work samples, and making project inquiries.',
     icon: FileText,
   },
 ]
